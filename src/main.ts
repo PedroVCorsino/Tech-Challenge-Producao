@@ -10,7 +10,7 @@ async function bootstrap() {
     .setTitle('Tech-Challenge-Produção')
     .setDescription('Microserviço responsável por acompanhar a produção/fila de pedidos e atualização de status')
     .setVersion('1.0')
-    .addTag('Api')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
