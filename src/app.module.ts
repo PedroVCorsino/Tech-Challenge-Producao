@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { RedisModule } from '@liaoliaots/nestjs-redis';
-import { HttpModule } from '@nestjs/axios'; // Importação correta para o HttpModule
+import { HttpModule } from '@nestjs/axios';
 import { PedidoController } from './controllers/pedido.controller';
 import { PEDIDO_SERVICE_TOKEN } from './services/interfaces/pedido.service.interface';
 import { PedidoService } from './services/pedido.service';
 import { PedidoRepository } from './repositories/pedido.repository';
 import { PEDIDO_REPOSITORY_TOKEN } from './repositories/interfaces/pedido.repository.interface';
-import { AuthService } from './auth/auth.service'; // Certifique-se de que o caminho está correto
+import { AuthService } from './auth/auth.service';
 import { AuthController } from './auth/auth.controler';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './auth/jwt/jwt.strategy';
