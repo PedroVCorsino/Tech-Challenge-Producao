@@ -1,6 +1,6 @@
 // src/services/pedido.service.ts
 
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, ConflictException } from '@nestjs/common';
 import { Pedido } from '../models/pedido.model';
 import { IPedidoRepository } from '../repositories/interfaces/pedido.repository.interface';
 import { IPedidoService } from './interfaces/pedido.service.interface';
@@ -12,11 +12,14 @@ export class PedidoService implements IPedidoService {
   ) {}
 
   async createPedido(pedidoData: Pedido): Promise<Pedido> {
-    return this.pedidoRepository.savePedido(pedidoData);
-  }
+    const existingPedido = await this.pedidoRepository.findById(pedidoData.id.toString());
+    if (existingPedido) {
+      // Se um pedido com o mesmo ID já existir, lance um erro
+      throw new ConflictException(`Um pedido com o ID ${pedidoData.id} já existe.`);
+    }
 
-  async findAll(): Promise<Pedido[]> {
-    return this.pedidoRepository.findAll();
+    // Se não existir, crie um novo pedido
+    return this.pedidoRepository.savePedido(pedidoData);
   }
 
   async findById(id: string): Promise<Pedido> {
@@ -30,4 +33,18 @@ export class PedidoService implements IPedidoService {
   async deletePedido(id: string): Promise<void> {
     return this.pedidoRepository.deletePedido(id);
   }
+
+  async updateStatus(id: string, status: string): Promise<Pedido> {
+    const pedido = await this.pedidoRepository.findById(id);
+    if (!pedido) {
+      throw new Error('Pedido não encontrado.');
+    }
+    pedido.status = status;
+    return this.pedidoRepository.updatePedido(id, pedido);
+  }
+
+  async findByStatus(status: string): Promise<Pedido[]> {
+    return this.pedidoRepository.findByStatus(status);
+  }
+
 }
