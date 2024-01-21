@@ -4,7 +4,7 @@ import { Request } from 'express';
 import { AuthGuard } from '@nestjs/passport';
 import { Pedido } from '../models/pedido.model';
 import { IPedidoService, PEDIDO_SERVICE_TOKEN } from '../services/interfaces/pedido.service.interface';
-import { UpdateStatusDto } from 'src/models/dtos/update-status.dto';
+import { UpdateStatusDto } from '../models/dtos/update-status.dto';
 
 @ApiTags('pedidos')
 @ApiBearerAuth()
