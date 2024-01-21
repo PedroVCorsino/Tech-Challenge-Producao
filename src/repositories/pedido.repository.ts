@@ -12,7 +12,6 @@ export class PedidoRepository implements IPedidoRepository {
   async savePedido(pedidoData: Pedido): Promise<Pedido> {
     const client = this.redisService.getClient();
     await client.set(`pedido:${pedidoData.id}`, JSON.stringify(pedidoData));
-    // Adicionar o pedido ao conjunto do status correspondente
     await client.sadd(`status:${pedidoData.status}`, pedidoData.id);
     return pedidoData;
   }
@@ -23,23 +22,20 @@ export class PedidoRepository implements IPedidoRepository {
     if (data) {
       return JSON.parse(data);
     } else {
-      return null; // Ou lance uma exceção, dependendo da sua lógica de negócio
+      return null;
     }
   }
 
   async updatePedido(id: string, pedidoData: Pedido): Promise<Pedido> {
     const client = this.redisService.getClient();
-    // Recuperar o pedido atual para obter o status antigo
     const currentData = await client.get(`pedido:${id}`);
     if (currentData) {
       const currentPedido = JSON.parse(currentData);
-      // Remover do conjunto do status antigo
       await client.srem(`status:${currentPedido.status}`, id);
     }
   
-    // Atualizar o pedido
+
     await client.set(`pedido:${id}`, JSON.stringify(pedidoData));
-    // Adicionar ao conjunto do novo status
     await client.sadd(`status:${pedidoData.status}`, id);
   
     return pedidoData;

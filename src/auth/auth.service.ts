@@ -13,8 +13,7 @@ export class AuthService {
   authenticate(userDTO: UserDTO): Observable<string> {
     const headers = { 'Content-Type': 'application/json' };
     return this.httpService.post(`${this.BASE_URL}/auth`, userDTO, { headers })
-      .pipe(
-        map(response => response.data),
-        ); // Extrai apenas os dados da resposta
+      .pipe( map(response => response.data),
+      );
   }
 }
