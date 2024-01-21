@@ -1,26 +1,31 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ComboDto } from './dtos/combo.model';
 
 export class Pedido {
-  @ApiProperty({ example: '123', description: 'Identificador único do pedido' })
-  id: string;
+  @ApiProperty({ example: 122 })
+  id: number;
 
-  @ApiProperty({ example: 'Produto X', description: 'Nome ou descrição do produto' })
-  produto: string;
+  @ApiProperty({
+    example: 'Fulano da Silva' ,
+    description: 'Identificador do cliente. Pode ser o nome, CPF ou email.'
+  })
+  idCliente: string;
 
-  @ApiProperty({ example: 10, description: 'Quantidade do produto pedido' })
-  quantidade: number;
+  @ApiProperty({ type: () => [ComboDto] })
+  combos: ComboDto[];
 
-  @ApiProperty({ example: 50.0, description: 'Preço total do pedido' })
-  preco: number;
+  @ApiProperty({ example: 23.98 })
+  valorTotal: number;
 
-  @ApiProperty({ example: 'pendente', description: 'Status do pedido' })
+  @ApiProperty({ example: 'PENDENTE' })
   status: string;
 
-  constructor(id: string, produto: string, quantidade: number, preco: number, status: string) {
-    this.id = id;
-    this.produto = produto;
-    this.quantidade = quantidade;
-    this.preco = preco;
-    this.status = status;
-  }
+  @ApiProperty({ example: true })
+  pago: boolean;
+
+  @ApiProperty({ example: '2023-09-01T13:00:00.000+00:00' })
+  dataCadastro: Date;
+
+  @ApiProperty({ required: false, example: null })
+  dataAlteracao: Date | null;
 }
