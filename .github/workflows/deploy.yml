@@ -1,16 +1,10 @@
 name: Deploy to AWS
 
-# Defina os eventos que acionarão este fluxo de trabalho
+# Define os eventos que acionarão este fluxo de trabalho
 on:
-  push:
-    branches:
-      - "feature*"
-  pull_request:
-    branches:
-      - "develop"
-      - "main"
+  push
 
-# Defina os jobs que serão executados no fluxo de trabalho
+# Define os jobs que serão executados no fluxo de trabalho
 jobs:
   # Job para construir e testar o código
   build:
@@ -45,7 +39,7 @@ jobs:
     needs: build
 
     # Condição para quando este job será executado
-    if: github.event_name == 'push' && (github.event.ref == 'refs/heads/develop' || github.event.ref == 'refs/heads/main')
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && (github.event.ref == 'refs/heads/develop' || github.event.ref == 'refs/heads/main'))
 
     steps:
       - name: Configure AWS credentials
