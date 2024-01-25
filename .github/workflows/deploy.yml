@@ -13,7 +13,6 @@ jobs:
   build:
     name: Build e testes
     runs-on: ubuntu-latest
-    description: "Build e teste do código"
 
     steps:
       - name: Checkout código
@@ -36,7 +35,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy na AWS
-    description: "Deploy na AWS"
 
     needs: build
 
@@ -53,6 +51,4 @@ jobs:
 
       - name: Deploy realizado com sucesso
         if: success()
-        # Descrição do passo
-        description: "Deploy realizado com sucesso"
         run: echo 'Deployment successful!'
