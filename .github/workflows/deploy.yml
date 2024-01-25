@@ -1,5 +1,6 @@
 name: Deploy to AWS
 
+# Defina os eventos que acionarão este fluxo de trabalho
 on:
   push:
     branches:
@@ -9,10 +10,13 @@ on:
       - "develop"
       - "main"
 
-
+# Defina os jobs que serão executados no fluxo de trabalho
 jobs:
+  # Job para construir e testar o código
   build:
     runs-on: ubuntu-latest
+    # Descrição do job
+    description: "Build e teste do código"
 
     steps:
       - name: Checkout repository
@@ -31,11 +35,16 @@ jobs:
           yarn build
           yarn test
 
+  # Job para implantar no AWS
   deploy:
     runs-on: ubuntu-latest
+    # Descrição do job
+    description: "Deploy na AWS"
 
+    # Este job precisa do job 'build' antes de executar
     needs: build
 
+    # Condição para quando este job será executado
     if: github.event_name == 'push' && (github.event.ref == 'refs/heads/develop' || github.event.ref == 'refs/heads/main')
 
     steps:
@@ -51,4 +60,6 @@ jobs:
 
       - name: Notify success
         if: success()
+        # Descrição do passo
+        description: "Deploy realizado com sucesso"
         run: echo 'Deployment successful!'
