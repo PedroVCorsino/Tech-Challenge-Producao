@@ -44,8 +44,8 @@ resource "aws_ecs_service" "tcproducao_service" {
   }
 }
 
-resource "aws_iam_role" "ecs_execution_role" {
-  name = "ecs_execution_role"
+resource "aws_iam_role" "ecs_execution_role-tc-producao" {
+  name = "ecs_execution_role-tc-producao"
 
   assume_role_policy = jsonencode({
     Version   = "2012-10-17",
