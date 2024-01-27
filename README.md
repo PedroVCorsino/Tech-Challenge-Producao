@@ -1,30 +1,55 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Tech-Challenge
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Desafio desenvolvido fase04 do curso de Software Architecture da FIAP Pós Tech.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Escolha das tecnologias
+### Linguagem
+- TypeScript
+    - TypeScript, uma extensão tipada do JavaScript, oferece um desenvolvimento mais rápido e seguro. Seu sistema de tipos ajuda a prevenir erros em tempo de execução, permitindo que os desenvolvedores identifiquem problemas rapidamente, economizando tempo e recursos. Isso se traduz em um desenvolvimento mais ágil e menos propenso a erros, ideal para aplicações que precisam evoluir rapidamente.
 
-## Description
+### Framework
+- Nest.JS
+  - Nest.js, um framework poderoso para aplicações server-side, é construído em TypeScript e oferece uma arquitetura eficiente e escalável. Seu design modular e a integração fácil com outras bibliotecas e ferramentas tornam o Nest.js uma escolha excelente para criar aplicações de alto desempenho com menor consumo de recursos de hardware. Isso se traduz em economia direta, especialmente em ambientes de cloud computing onde os recursos são cobrados conforme o uso.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Repositorio de dados
+- Redis
+    - Quando se trata de banco de dados, o Redis, um armazenamento de dados NoSQL em memória, é conhecido pela sua excepcional velocidade. Ele é capaz de realizar operações de leitura e escrita com latências extremamente baixas, o que é crucial para aplicações que exigem respostas rápidas em tempo real. Além disso, o Redis é altamente escalável e pode ser facilmente distribuído, garantindo que a aplicação possa crescer sem enfrentar gargalos de desempenho.
+
+A combinação de TypeScript, Nest.js e Redis oferece uma plataforma que não exigi um investimento significativo em hardware porem oferece rapidez e velocidade. É ideal para que a cozinha e os clientes possam acompanhar a fila de produção de pedidos e a atualização do status dos mesmos sem onerar o restante do sistema. 
+
+## Documentação do sistema (DDD) utilizando a linguagem ubíqua.
+### Contextos delimitados
+- Cozinha (Preparação e entrega do pedido)
+  ![image](https://github.com/PedroVCorsino/Tech-Challenge/assets/61948860/823b0576-5524-4397-9411-6805505dfb85)
+
+### Domínios
+- Subdomínio Principal:
+    - Comida
+- Subdomínio Genérico:
+    - Lógica de pagamento integrada ao mercado pago.
+- Subdomínio Suporte:
+    - Gestão de estoque,
+    - funcionários, clientes,
+    - estratégias de marketing
+
+
+### Dicionário de linguagem ubíqua
+- Identificação: Pode se identificar usando CPF, nome, e-mail ou não se identificar.
+- Produto: Quaisquer itens vendidos pela lanchonete, divididos nas categorias Lanche, Acompanhamento, Bebida e Sobremesa.
+- Combo: É uma oferta especial que combina um lanche, um acompanhamento, uma bebida e uma sobremesa por um preço promocional.
+- Lanche: Refere-se ao item principal do cardápio, geralmente um sanduíche ou hambúrguer, ou uma opção de refeição vegana.
+ - Acompanhamento: É uma opção adicional que pode ser escolhida juntamente com o lanche. Pode incluir batatas fritas, nuggets, onion rings, salada, ou outras opções de acompanhamentos.
+- Bebida: São as opções líquidas disponíveis para serem consumidas junto com o lanche. Isso pode incluir refrigerantes, sucos, água, chás gelados, milkshakes, entre outros.
+- Sobremesa: Refere-se a um item do cardápio que é servido após a refeição principal. Pode incluir opções como sorvetes, tortas, bolos, milkshakes especiais ou outras delícias doces.
+- Categoria: Ou tipo, se refere a qual tipo de produto entre as opções lanche, acompanhamento, bebida e sobremesa.
+---
+  
+
+## Autores
+- [Diego Amorim](https://github.com/dieg0amorim)
+- [Gabriela Ribeiro](https://github.com/gabsribeiro)
+- [Luzivan Gois](https://github.com/luzivanmgois)
+- [Pedro Vinicius](https://github.com/PedroVCorsino)
 
 ## Installation
 
@@ -57,17 +82,3 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
