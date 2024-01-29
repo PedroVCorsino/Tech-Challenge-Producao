@@ -1,0 +1,68 @@
+name: Main Build AWS and SonarCloud
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.11.0'
+
+      - name: Instalando dependências
+        run: yarn install
+
+      - name: Build e teste
+        run: |
+          yarn build
+          yarn test
+
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  deploy-aws:
+    runs-on: ubuntu-latest
+    name: Deploy na AWS
+    steps:
+      - name: Configurando AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: 'us-east-1'
+
+      - name: Encotrar diretório
+        run: ls
+
+      - name: Deploy na AWS
+        run: |
+          pwd
+          whoami
+          ls -al
+          chmod +x ./deploy.sh
+          ./deploy.sh
+
+      - name: Deploy realizado com sucesso
+        if: success()
+        run: echo 'Deployment successful!'

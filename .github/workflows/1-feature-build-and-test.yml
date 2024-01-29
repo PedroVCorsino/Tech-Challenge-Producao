@@ -1,4 +1,4 @@
-name: Feature Build and Test
+name: Feature Build e Teste
 
 on:
   push:
