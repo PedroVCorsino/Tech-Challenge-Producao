@@ -39,11 +39,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   deploy-aws:
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./
-    runs-on: ubuntu-latest
-    name: Deploy na AWS
     steps:
       - name: Configurando AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
@@ -62,7 +61,3 @@ jobs:
           ls -al
           chmod +x ./deploy.sh
           ./deploy.sh
-
-      - name: Deploy realizado com sucesso
-        if: success()
-        run: echo 'Deployment successful!'
