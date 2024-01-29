@@ -1,4 +1,4 @@
-name: Develop Build e Teste
+name: Develop SonarCloud
 
 on:
   push:
@@ -6,24 +6,15 @@ on:
       - develop
 
 jobs:
-  build_and_test:
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./
     steps:
-      - name: Checkout código
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
         with:
-          node-version: '20.11.0'
-
-      - name: Instalando dependências
-        run: yarn install
-
-      - name: Build e teste
-        run: |
-          yarn build
-          yarn test
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
