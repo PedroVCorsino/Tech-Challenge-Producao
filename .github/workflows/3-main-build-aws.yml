@@ -8,9 +8,6 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./
     steps:
       - name: Checkout código
         uses: actions/checkout@v2
@@ -42,6 +39,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   deploy-aws:
+    defaults:
+      run:
+        working-directory: ./
     runs-on: ubuntu-latest
     name: Deploy na AWS
     steps:
