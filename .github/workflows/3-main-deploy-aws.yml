@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build_and_test:
+  build_aws:
     runs-on: ubuntu-latest
     defaults:
       run:
