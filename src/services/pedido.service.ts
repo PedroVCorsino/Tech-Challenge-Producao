@@ -13,7 +13,7 @@ export class PedidoService implements IPedidoService {
     @Inject(NOTIFICACAO_SERVICE_TOKEN) private readonly notificacaoService: INotificacaoService
   ) {}
 
-  async createPedido(pedidoData: Pedido, jwtToken: string): Promise<Pedido> {
+  async createPedido(pedidoData: Pedido): Promise<Pedido> {
     const existingPedido = await this.pedidoRepository.findById(pedidoData.id.toString());
     if (existingPedido) {
       throw new ConflictException(`Um pedido com o ID ${pedidoData.id} já existe.`);

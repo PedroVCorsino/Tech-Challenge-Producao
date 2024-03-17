@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { RedisModule } from '@liaoliaots/nestjs-redis';
 import { HttpModule } from '@nestjs/axios';
 import { PedidoController } from '../controllers/pedido.controller';
+import { PedidoListener } from '../controllers/pedido.listener';
 import { PEDIDO_SERVICE_TOKEN } from '../services/interfaces/pedido.service.interface';
 import { PedidoService } from '../services/pedido.service';
 import { PedidoRepository } from '../repositories/pedido.repository';
@@ -14,6 +15,7 @@ import { NotificacaoService } from '../services/notificacao.service';
 import { NOTIFICACAO_SERVICE_TOKEN } from '../services/interfaces/notificacao.service.interface';
 import { SecretsService } from '../external/secrets.service';
 import { SecretsModule } from './secrets.module';
+import { RabbitMQService } from '../services/rabbitmq.service';
 
 @Module({
   imports: [
@@ -36,7 +38,8 @@ import { SecretsModule } from './secrets.module';
   ],
   controllers: [
     PedidoController, 
-    AuthController
+    AuthController,
+    PedidoListener
   ],
   providers: [
     {
@@ -54,6 +57,7 @@ import { SecretsModule } from './secrets.module';
     AuthService,
     SecretsService,
     JwtStrategy,
+    RabbitMQService,
   ],
 })
 export class AppModule {}
