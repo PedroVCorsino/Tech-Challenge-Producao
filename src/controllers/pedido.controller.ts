@@ -30,7 +30,7 @@ export class PedidoController {
   @HttpCode(HttpStatus.CREATED)
   async createPedido(@Body() pedidoData: Pedido, @Req() req: Request) {
     const jwtToken = this.extractJwtToken(req); 
-    await this.pedidoService.createPedido(pedidoData, jwtToken); 
+    await this.pedidoService.createPedido(pedidoData); 
     return { message: 'Pedido criado com sucesso.' };
   }
 

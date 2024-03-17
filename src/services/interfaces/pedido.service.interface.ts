@@ -6,7 +6,7 @@ import { Pedido } from '../../models/pedido.model';
 export const PEDIDO_SERVICE_TOKEN = 'IPedidoService';
 
 export interface IPedidoService {
-  createPedido(pedidoData: Pedido, jwtToken: string): Promise<Pedido>;
+  createPedido(pedidoData: Pedido): Promise<Pedido>;
   findById(id: string): Promise<Pedido>;
   updatePedido(id: string, pedidoData: Pedido, jwtToken: string): Promise<Pedido>;
   deletePedido(id: string): Promise<void>;
