@@ -7,13 +7,13 @@ import { JwksClient } from 'jwks-rsa';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
     const jwks = new JwksClient({
-      jwksUri: `https://cognito-idp.us-east-1.amazonaws.com/us-east-1_acioiSPS0/.well-known/jwks.json`,
+      jwksUri: `https://cognito-idp.us-east-1.amazonaws.com/us-east-1_PCH3tTb67/.well-known/jwks.json`,
     });
 
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      audience: '60kovcmoralh3svpetj8gs4f6h',
-      issuer: `https://cognito-idp.us-east-1.amazonaws.com/us-east-1_acioiSPS0`,
+      audience: '12c76l5h81rvktmg48lg13hu8d',
+      issuer: `https://cognito-idp.us-east-1.amazonaws.com/us-east-1_PCH3tTb67`,
       algorithms: ['RS256'],
       secretOrKeyProvider: (req, rawJwtToken, done) => {
         // console.log(rawJwtToken)

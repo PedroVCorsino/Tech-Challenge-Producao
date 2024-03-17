@@ -6,7 +6,7 @@ import { AxiosResponse } from 'axios';
 
 @Injectable()
 export class AuthService {
-  private readonly BASE_URL = 'https://br75f66nkb.execute-api.us-east-1.amazonaws.com/Prod';
+  private readonly BASE_URL = 'https://0ge70f466e.execute-api.us-east-1.amazonaws.com/Prod/';
 
   constructor(private readonly httpService: HttpService) {}
 
