@@ -1,5 +1,5 @@
-# Orquestração
-No desenvolvimento do sistema de lanchonete, adotamos o padrão Saga Coordenado para garantir uma execução eficiente do fluxo de criação de pedidos. Este padrão nos permite orquestrar com precisão as operações distribuídas necessárias para processar um pedido do início ao fim, assegurando a consistência e a integridade do sistema como um todo.
+# Coreografado
+No desenvolvimento do sistema de lanchonete, adotamos o padrão Saga Coreografado para garantir uma execução eficiente do fluxo de criação de pedidos. Este padrão nos permite coreografar com precisão as operações distribuídas necessárias para processar um pedido do início ao fim, assegurando a consistência e a integridade do sistema como um todo.
 
 ## 1. Início do Processo de Criação de Pedido:
    O processo é iniciado com a criação de um novo pedido. Este passo inicial é crucial, pois estabelece a base para as operações subsequentes, garantindo que todas as informações necessárias estejam corretamente registradas e prontas para serem processadas nas etapas seguintes.
