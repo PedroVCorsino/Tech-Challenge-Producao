@@ -2,6 +2,9 @@
 
 Desafio desenvolvido fase04 do curso de Software Architecture da FIAP Pós Tech.
 
+## Saga Coreografado
+[SAGA.md](https://github.com/PedroVCorsino/Tech-Challenge-Producao/blob/main/SAGA.md) 
+
 ## Escolha das tecnologias
 ### Linguagem
 - TypeScript
