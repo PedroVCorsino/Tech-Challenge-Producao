@@ -12,7 +12,7 @@ export class NotificacaoService implements INotificacaoService {
       headers: { Authorization: `Bearer ${jwtToken}` },
     };
 
-    this.httpService.post('http://localhost:8080/api/pedido', dadosPedido, config)
+    this.httpService.post(`http://${PEDIDOS_HOST}:8080/api/pedido`, dadosPedido, config)
       .subscribe({
         next: response => console.log('Pedido criado notificado', response.data),
         error: err => console.error('Erro ao notificar pedido criado', err)
@@ -24,7 +24,7 @@ export class NotificacaoService implements INotificacaoService {
       headers: { Authorization: `Bearer ${jwtToken}` },
     };
     
-    this.httpService.put(`http://localhost:8080/api/pedido/${dadosPedido.id}`, dadosPedido, config)
+    this.httpService.put(`http://${PEDIDOS_HOST}:8080/api/pedido/${dadosPedido.id}`, dadosPedido, config)
       .subscribe({
         next: response => console.log('Pedido atualizado notificado', response.data),
         error: err => console.error('Erro ao notificar pedido atualizado', err)

@@ -15,7 +15,7 @@ export class RabbitMQService implements OnModuleInit {
 
   private async connectAndConsume() {
     try {
-      const connection = await amqp.connect('amqp://guest:guest@localhost');
+      const connection = await amqp.connect(`amqp://${RABBIT_USER}:${RABBIT_PASSWORD}@${RABBIT_HOST}`);
       const channel = await connection.createChannel();
       const queue = 'producaoQueue';
 
